@@ -10,6 +10,7 @@ function extraiLinks(texto) {
     */
     const regex = /\[([^\]]*)\]\((https?:\/\/[^$#\s].[^\s]*)\)/gm;
     const arrayResultados = [];
+    let retorno;
 
     let ocorrencia;
     while ((ocorrencia = regex.exec(texto)) !== null) {
@@ -26,15 +27,11 @@ function trataErro(erro) {
 async function abreArquivo(caminho) {
     const encoding = 'utf-8';
     try {
-        const texto = await fs.promises.readFile(caminho, encoding);
-
-        links = extraiLinks(texto);
-
-        console.log(links);
+        const texto = await fs.promises.readFile(caminho, encoding)
+        return extraiLinks(texto);
     } catch (erro) {
         trataErro(erro);
     }
-    
 }
 
-abreArquivo('./arquivos/texto.md');
+module.exports = abreArquivo;
