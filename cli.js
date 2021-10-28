@@ -15,7 +15,9 @@ async function processa(caminhoArquivo) {
         } else {
             console.log(chalk.bgBlue('Links encontrados:'), resultado);
         }
-    }    
+    } else {
+        console.log(chalk.bgRed('Nenhum link encontrado'));
+    }   
 }
 
 processa(process.argv);
