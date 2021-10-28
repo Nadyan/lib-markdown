@@ -1,5 +1,5 @@
-const chalk = require('chalk');
-const fs = require('fs');
+import chalk from 'chalk';
+import fs from 'fs';
 
 
 function extraiLinks(texto) {
@@ -10,7 +10,6 @@ function extraiLinks(texto) {
     */
     const regex = /\[([^\]]*)\]\((https?:\/\/[^$#\s].[^\s]*)\)/gm;
     const arrayResultados = [];
-    let retorno;
 
     let ocorrencia;
     while ((ocorrencia = regex.exec(texto)) !== null) {
@@ -24,7 +23,7 @@ function trataErro(erro) {
     throw new Error(chalk.bgRed(erro));
 }
 
-async function abreArquivo(caminho) {
+export default async function abreArquivo(caminho) {
     const encoding = 'utf-8';
     try {
         const texto = await fs.promises.readFile(caminho, encoding)
@@ -33,5 +32,3 @@ async function abreArquivo(caminho) {
         trataErro(erro);
     }
 }
-
-module.exports = abreArquivo;
