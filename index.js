@@ -16,11 +16,14 @@ function extraiLinks(texto) {
         arrayResultados.push({ [ocorrencia[1]] : ocorrencia[2] });
     }
 
+    if (arrayResultados.length === 0) {
+        return 'Nenhum link encontrado';
+    }
     return arrayResultados;
 }
 
 function trataErro(erro) {
-    throw new Error(chalk.bgRed(erro));
+    throw new Error(chalk.bgRed(erro.code, 'arquivo não encontrado'));
 }
 
 export default async function abreArquivo(caminho) {
